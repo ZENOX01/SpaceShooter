@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://di0f4d2y3w8l2"]
+
+[ext_resource type="Script" uid="uid://bhaom5xh4gxdv" path="res://scripts/GameOver.cs" id="1_4g1f3"]
+[ext_resource type="FontFile" uid="uid://cny5t2wrgfrnj" path="res://scripts/JustAnotherHand-Regular.ttf" id="2_8x9m1"]
+[ext_resource type="Shader" uid="uid://begg0tos712vd" path="res://scripts/game.gdshader" id="2_racf3"]
+[ext_resource type="Texture2D" uid="uid://s0mue7h33oit" path="res://SpaceShip Game Assets/gameBg.png" id="3_7m3ot"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_racf3"]
+shader = ExtResource("2_racf3")
+shader_parameter/scroll_speed = Vector2(0, 0.009)
+
+[node name="GameOver" type="Node2D" unique_id=203430850]
+script = ExtResource("1_4g1f3")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=278546491]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_racf3")
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -93.0
+offset_right = 1286.0
+offset_bottom = 760.0
+grow_vertical = 2
+texture = ExtResource("3_7m3ot")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=450665157]
+offset_left = 436.0
+offset_top = 26.0
+offset_right = 868.0
+offset_bottom = 147.0
+theme_override_fonts/font = ExtResource("2_8x9m1")
+theme_override_font_sizes/font_size = 120
+text = "Game Over"
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=582946334]
+offset_left = 485.0
+offset_top = 127.0
+offset_right = 761.0
+offset_bottom = 216.0
+theme_override_fonts/font = ExtResource("2_8x9m1")
+theme_override_font_sizes/font_size = 88
+text = "Score: 0"
+
+[node name="BestScoreLabel" type="Label" parent="." unique_id=651322226]
+offset_left = 495.0
+offset_top = 207.0
+offset_right = 771.0
+offset_bottom = 303.0
+theme_override_fonts/font = ExtResource("2_8x9m1")
+theme_override_font_sizes/font_size = 95
+text = "Best: 0"
+
+[node name="Buttons" type="Control" parent="." unique_id=1837439630]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Retry" type="Button" parent="Buttons" unique_id=1854996929]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 304.0
+offset_right = 724.0
+offset_bottom = 414.0
+theme_override_fonts/font = ExtResource("2_8x9m1")
+theme_override_font_sizes/font_size = 70
+text = "Retry"
+
+[node name="MainMenu" type="Button" parent="Buttons" unique_id=522515298]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 420.0
+offset_right = 790.0
+offset_bottom = 520.0
+theme_override_fonts/font = ExtResource("2_8x9m1")
+theme_override_font_sizes/font_size = 60
+text = "Main Menu"
+
+[connection signal="pressed" from="Buttons/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Buttons/MainMenu" to="." method="_on_main_menu_pressed"]

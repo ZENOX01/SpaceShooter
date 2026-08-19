@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://ir8qge0ul3d6"]
+
+[ext_resource type="PackedScene" uid="uid://b6culji4mri" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://d0486y7ekftfb" path="res://scripts/Game.cs" id="1_yqjtg"]
+[ext_resource type="Shader" uid="uid://begg0tos712vd" path="res://scripts/game.gdshader" id="3_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://s0mue7h33oit" path="res://SpaceShip Game Assets/gameBg.png" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://dqmknlye5gn6n" path="res://scenes/score.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://bdglrxkfd6f7f" path="res://scenes/pause_menu.tscn" id="6_p57ef"]
+[ext_resource type="AudioStream" uid="uid://cw1nd2adj7u54" path="res://audio/laserShoot.wav" id="7_gee14"]
+[ext_resource type="AudioStream" uid="uid://brsh60f7xs1dt" path="res://audio/alex-morgan-synthwave-arcade-retro-nights-573647.mp3" id="7_u5sy4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o4lqu"]
+shader = ExtResource("3_lbhrr")
+shader_parameter/scroll_speed = Vector2(0, 0.009)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4lqu"]
+size = Vector2(1166, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qfc4"]
+size = Vector2(10, 736.5)
+
+[node name="Game" type="Node2D" unique_id=1074457569 node_paths=PackedStringArray("Bullets", "Astroids", "shootSound")]
+script = ExtResource("1_yqjtg")
+Bullets = NodePath("bullets")
+Astroids = NodePath("Astroids")
+shootSound = NodePath("AudioStreamPlayer2D2")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1720791174]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_o4lqu")
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -93.0
+offset_right = 1286.0
+offset_bottom = 760.0
+grow_vertical = 2
+texture = ExtResource("4_iywne")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Player" parent="." unique_id=2018162679 instance=ExtResource("1_uwrxv")]
+position = Vector2(478, 254)
+
+[node name="astroidSpwan" type="Node2D" parent="." unique_id=1149550309]
+position = Vector2(556, -3)
+
+[node name="Marker2D" type="Marker2D" parent="astroidSpwan" unique_id=140541964]
+position = Vector2(2, -77)
+
+[node name="Marker2D2" type="Marker2D" parent="astroidSpwan" unique_id=1431654738]
+position = Vector2(-617, 299)
+
+[node name="Marker2D3" type="Marker2D" parent="astroidSpwan" unique_id=1405959862]
+position = Vector2(18, 698)
+
+[node name="Marker2D4" type="Marker2D" parent="astroidSpwan" unique_id=1218571233]
+position = Vector2(677, 283)
+
+[node name="AstroidTimer" type="Timer" parent="." unique_id=1105926524]
+autostart = true
+
+[node name="bullets" type="Node2D" parent="." unique_id=1648809852]
+position = Vector2(478, 254)
+
+[node name="Astroids" type="Node2D" parent="." unique_id=1507561883]
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=890494372]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders" unique_id=403132907]
+position = Vector2(573, -5)
+shape = SubResource("RectangleShape2D_o4lqu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders" unique_id=78715880]
+position = Vector2(574, 654)
+shape = SubResource("RectangleShape2D_o4lqu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders" unique_id=1475662112]
+position = Vector2(-6, 347.5)
+shape = SubResource("RectangleShape2D_6qfc4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders" unique_id=2051527432]
+position = Vector2(1156, 333.75)
+shape = SubResource("RectangleShape2D_6qfc4")
+
+[node name="Score" parent="." unique_id=566113581 instance=ExtResource("5_iywne")]
+offset_left = 557.0
+offset_top = 19.0
+offset_right = 659.0
+offset_bottom = 101.0
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1222463132]
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="CanvasLayer2" unique_id=713805228]
+offset_left = 120.0
+offset_top = 518.0
+offset_right = 160.0
+offset_bottom = 558.0
+action_left = &"left"
+action_right = &"right"
+action_up = &"up"
+action_down = &"down"
+visibility_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1105901182]
+
+[node name="pauseMenu" parent="CanvasLayer" unique_id=298876191 instance=ExtResource("6_p57ef")]
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=486982298]
+position = Vector2(-83, -93)
+rotation = 1.5707964
+scale = Vector2(0.505, 0.505)
+stream = ExtResource("7_gee14")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=300948690]
+position = Vector2(-83, -93)
+stream = ExtResource("7_u5sy4")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="ShootBullet" from="Player" to="." method="_on_player_shoot_bullet"]
+[connection signal="timeout" from="AstroidTimer" to="." method="_on_astroid_timer_timeout"]

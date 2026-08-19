@@ -1,0 +1,25 @@
+# Godot and general
+.import/
+*.import
+export_presets.cfg
+project.godot.import
+
+# Mono / C#
+bin/
+obj/
+*.dll
+*.pdb
+
+# Visual Studio
+.vs/
+*.suo
+
+# Build outputs / packaged binaries (attach to Releases instead)
+/Game/
+
+# OS files
+*.DS_Store
+Thumbs.db
+# Godot 4+ specific ignores
+.godot/
+/android/

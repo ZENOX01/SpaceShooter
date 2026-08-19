@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dqmknlye5gn6n"]
+
+[ext_resource type="FontFile" uid="uid://cny5t2wrgfrnj" path="res://scripts/JustAnotherHand-Regular.ttf" id="1_8juob"]
+[ext_resource type="Script" uid="uid://cn2igg1dhlvj5" path="res://scripts/Score.cs" id="2_bak1h"]
+
+[node name="Score" type="Label" unique_id=566113581 groups=["Score"]]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_8juob")
+theme_override_font_sizes/font_size = 45
+text = "Score"
+script = ExtResource("2_bak1h")

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bxatev516hpjq"]
+
+[ext_resource type="Shader" uid="uid://begg0tos712vd" path="res://scripts/game.gdshader" id="1_bqqt6"]
+[ext_resource type="Script" uid="uid://d0db6ugw1qfm" path="res://scripts/MainMenu.cs" id="1_wu84c"]
+[ext_resource type="Texture2D" uid="uid://s0mue7h33oit" path="res://SpaceShip Game Assets/gameBg.png" id="2_wu84c"]
+[ext_resource type="FontFile" uid="uid://cny5t2wrgfrnj" path="res://scripts/JustAnotherHand-Regular.ttf" id="3_8ln24"]
+[ext_resource type="Texture2D" uid="uid://sx3tsl7manby" path="res://Ui/Play.png" id="4_oa1go"]
+[ext_resource type="Texture2D" uid="uid://cqh028s68fobf" path="res://Ui/playhilight.png" id="5_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://djomcvgcjj5ue" path="res://Ui/Quit.png" id="6_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://2bae4qt3a0fq" path="res://Ui/QuitHilight.png" id="7_5dd4i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu84c"]
+shader = ExtResource("1_bqqt6")
+shader_parameter/scroll_speed = Vector2(0, 0.009)
+
+[node name="MainMenu" type="Node2D" unique_id=965419179]
+script = ExtResource("1_wu84c")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=357459667]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_wu84c")
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -93.0
+offset_right = 1286.0
+offset_bottom = 760.0
+grow_vertical = 2
+texture = ExtResource("2_wu84c")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="ButtonManager" type="Control" parent="." unique_id=467623515]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="TextureButton" parent="ButtonManager" unique_id=1099828204]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 192.0
+offset_right = 807.0
+offset_bottom = 292.0
+texture_normal = ExtResource("4_oa1go")
+texture_hover = ExtResource("5_tbmy8")
+
+[node name="Quit" type="TextureButton" parent="ButtonManager" unique_id=225363282]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 378.0
+offset_right = 804.0
+offset_bottom = 511.0
+texture_normal = ExtResource("6_jk1qb")
+texture_hover = ExtResource("7_5dd4i")
+
+[node name="Label" type="Label" parent="." unique_id=987368957]
+offset_left = 9.0
+offset_top = 591.0
+offset_right = 169.0
+offset_bottom = 640.0
+theme_override_fonts/font = ExtResource("3_8ln24")
+theme_override_font_sizes/font_size = 48
+text = "Made By Zeno'x"
+
+[connection signal="pressed" from="ButtonManager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ButtonManager/Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bv1b1sw0denxn"]
+
+[ext_resource type="Script" uid="uid://bffvpcevaijjc" path="res://scripts/Astroid.cs" id="1_1b6ih"]
+[ext_resource type="Texture2D" uid="uid://uobcwylegknm" path="res://SpaceShip Game Assets/Metior.png" id="1_rbjxg"]
+[ext_resource type="Texture2D" uid="uid://bevvlnc20kj1s" path="res://SpaceShip Game Assets/explosion.png" id="3_43mww"]
+[ext_resource type="AudioStream" uid="uid://df8wj4efal1my" path="res://audio/explosion.wav" id="4_xg2bh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4lqu"]
+radius = 21.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4lqu"]
+
+[sub_resource type="Animation" id="Animation_xg2bh"]
+resource_name = "Explode"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_dsxpu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eu181"]
+_data = {
+&"Explode": SubResource("Animation_xg2bh"),
+&"RESET": SubResource("Animation_dsxpu")
+}
+
+[node name="Astroid" type="Area2D" unique_id=1824487549 node_paths=PackedStringArray("AnimationPlayer", "EXPSound")]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_1b6ih")
+AnimationPlayer = NodePath("AnimationPlayer")
+EXPSound = NodePath("AudioStreamPlayer2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=527547650]
+scale = Vector2(0.235, 0.235)
+texture = ExtResource("1_rbjxg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1934094953]
+position = Vector2(-4, -10)
+shape = SubResource("CircleShape2D_o4lqu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1174849312]
+sprite_frames = SubResource("SpriteFrames_o4lqu")
+
+[node name="Explosion" type="Sprite2D" parent="." unique_id=1531206494]
+visible = false
+position = Vector2(-2, -18)
+scale = Vector2(1.6679168, 1.8241667)
+texture = ExtResource("3_43mww")
+hframes = 8
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=835980869]
+libraries/ = SubResource("AnimationLibrary_eu181")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1038366487]
+stream = ExtResource("4_xg2bh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

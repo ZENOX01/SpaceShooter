@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://bdglrxkfd6f7f"]
+
+[ext_resource type="Shader" uid="uid://cgqv6kgjden5w" path="res://scripts/new_shader.gdshader" id="1_myx47"]
+[ext_resource type="Script" uid="uid://clvxp8npmjvbi" path="res://scripts/PauseMenu.cs" id="2_5d2l8"]
+[ext_resource type="FontFile" uid="uid://cny5t2wrgfrnj" path="res://scripts/JustAnotherHand-Regular.ttf" id="2_kukqi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o4lqu"]
+shader = ExtResource("1_myx47")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_myx47"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_kukqi"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1.0170001, -0.050000004, -0.16950002, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5d2l8"]
+_data = {
+&"RESET": SubResource("Animation_myx47"),
+&"blur": SubResource("Animation_kukqi")
+}
+
+[node name="PauseMenu" type="Control" unique_id=298876191 node_paths=PackedStringArray("animationPlayer")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5d2l8")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1389486165]
+material = SubResource("ShaderMaterial_o4lqu")
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 647.0
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1370553498]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -126.5
+offset_right = 113.0
+offset_bottom = 126.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1956107]
+layout_mode = 2
+
+[node name="restart" type="Button" parent="PanelContainer/VBoxContainer" unique_id=393043937]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kukqi")
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+
+[node name="resume" type="Button" parent="PanelContainer/VBoxContainer" unique_id=716776727]
+layout_mode = 2
+size_flags_vertical = 14
+theme_override_fonts/font = ExtResource("2_kukqi")
+theme_override_font_sizes/font_size = 67
+text = "Resume"
+
+[node name="quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=47756151]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("2_kukqi")
+theme_override_font_sizes/font_size = 81
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1801450146]
+libraries/ = SubResource("AnimationLibrary_5d2l8")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

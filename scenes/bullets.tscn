@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c58wm7r2g11yf"]
+
+[ext_resource type="Script" uid="uid://1iy1vh3p6gpt" path="res://scripts/Bullets.cs" id="1_l4li6"]
+[ext_resource type="Texture2D" uid="uid://ddvbtk7dknpm2" path="res://SpaceShip Game Assets/Bullet(1).png" id="2_atg88"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_an5t8"]
+radius = 0.6881661
+
+[node name="Bullets" type="Area2D" unique_id=1877430683 groups=["Bullet"]]
+scale = Vector2(5.755, 5.755)
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_l4li6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2108125692]
+scale = Vector2(0.01238881, 0.01238881)
+texture = ExtResource("2_atg88")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1970788696]
+rotation = 1.5707964
+scale = Vector2(0.505, 0.505)
+shape = SubResource("CircleShape2D_an5t8")
