@@ -62,6 +62,14 @@ position = Vector2(677, 283)
 [node name="AstroidTimer" type="Timer" parent="." unique_id=1105926524]
 autostart = true
 
+[node name="SelfBlastTimer" type="Timer" parent="." unique_id=650498661]
+wait_time = 5.0
+autostart = true
+
+[node name="PickupTimer" type="Timer" parent="." unique_id=1593441413]
+wait_time = 10.0
+autostart = true
+
 [node name="bullets" type="Node2D" parent="." unique_id=1648809852]
 position = Vector2(478, 254)
 
@@ -121,5 +129,9 @@ stream = ExtResource("7_u5sy4")
 volume_db = -5.0
 autoplay = true
 
+[node name="SelfBlasts" type="Node2D" parent="." unique_id=1462954211]
+
 [connection signal="ShootBullet" from="Player" to="." method="_on_player_shoot_bullet"]
 [connection signal="timeout" from="AstroidTimer" to="." method="_on_astroid_timer_timeout"]
+[connection signal="timeout" from="SelfBlastTimer" to="." method="_on_self_blast_timer_timeout"]
+[connection signal="timeout" from="PickupTimer" to="." method="_on_pickup_timer_timeout"]

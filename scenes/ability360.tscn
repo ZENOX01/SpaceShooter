@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dmu2qqbxwlw21"]
+
+[ext_resource type="Script" uid="uid://bpd8o0svlqfdw" path="res://scripts/Ability360.cs" id="1_fjr2o"]
+[ext_resource type="Texture2D" uid="uid://ddvbtk7dknpm2" path="res://SpaceShip Game Assets/Bullet(1).png" id="2_577ac"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4lqu"]
+radius = 15.132746
+
+[node name="Ability360" type="Area2D" unique_id=928747674]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("1_fjr2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1349686577]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_o4lqu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1979735973]
+scale = Vector2(0.55078125, 0.5214844)
+texture = ExtResource("2_577ac")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

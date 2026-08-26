@@ -28,6 +28,7 @@ public partial class Astroid : Area2D
 	public async void _on_body_entered(CharacterBody2D body)
 	{
 		body.CallDeferred(Node.MethodName.QueueFree);
+		EXPSound.Play();
 		await Explosion();
 		GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, "res://scenes/game_over.tscn");
 	}
