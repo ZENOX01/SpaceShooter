@@ -20,7 +20,7 @@ This repository contains the game's scenes, scripts and assets. Prebuilt binarie
 - Move: arrow keys / WASD
 - Shoot: `Space`
 - Pause: `Esc`
-
+- Ability; `Shift`
 ## Running (development)
 
 1. Install Godot (the editor used to author the project).
